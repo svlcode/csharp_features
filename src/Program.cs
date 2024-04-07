@@ -25,12 +25,9 @@ else
 {
   // var features = Assembly.GetExecutingAssembly().GetTypes().Where(t => t.IsSubclassOf(typeof(BaseFeature))).ToList();
   // Activator.CreateInstance(features[0]);
-  // for (int i = 0; i < features.Count; i++)
-  // {
-  //   Console.WriteLine("" + iM.)
-  // }
 
-  // Console.WriteLine("NO Arguments passed");
+  Console.Clear();
+
   IMenu menu = ConsoleMenuFactory.CreateMenu();
   menu.AddMenuItem("Local functions", () =>
   {
