@@ -29,6 +29,7 @@ else
     menu.AddMenuFeature<LocalFunctions>();
     menu.AddMenuFeature<SwitchPatterns>();
     menu.AddMenuFeature<RefReturns>();
+    menu.AddMenuFeature<WorkingWithSpans>();
     menu.Show();
 }
 
