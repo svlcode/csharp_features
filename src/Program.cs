@@ -22,27 +22,13 @@ if (args?.Length > 0)
 }
 else
 {
-    // var features = Assembly.GetExecutingAssembly().GetTypes().Where(t => t.IsSubclassOf(typeof(BaseFeature))).ToList();
-    // Activator.CreateInstance(features[0]);
-
     Console.Clear();
 
     IMenu menu = ConsoleMenuFactory.CreateMenu();
-    menu.AddMenuItem("Local functions", () =>
-    {
-        var feature = new LocalFunctions();
-        feature.Run();
-    });
-    menu.AddMenuItem("Switch patterns", () =>
-    {
-        var feature = new SwitchPatterns();
-        feature.Run();
-    });
-    menu.AddMenuItem("Ref returns", () =>
-    {
-        var feature = new RefReturns();
-        feature.Run();
-    });
+    menu.AddMenuFeature<ThreadPoolFeature>();
+    menu.AddMenuFeature<LocalFunctions>();
+    menu.AddMenuFeature<SwitchPatterns>();
+    menu.AddMenuFeature<RefReturns>();
     menu.Show();
 }
 
