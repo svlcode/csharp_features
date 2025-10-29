@@ -1,74 +1,61 @@
-﻿
-using System.Reflection;
-using ConsoleLib;
+﻿using ConsoleLib;
 using ConsoleLib.Factory;
+using Features;
 
 if (args?.Length > 0)
 {
-  Console.WriteLine($"Argument passed: {args[0]}");
+    Console.WriteLine($"Argument passed: {args[0]}");
 
-  var feature = GetFeature(args[0]);
-  if (feature is not null)
-  {
-    Console.WriteLine($"---Executing feature: {feature.Name}---");
-    feature.Run();
-  }
-  else
-  {
-    Console.WriteLine($"Invalid feature");
-  }
+    var feature = GetFeature(args[0]);
+    if (feature is not null)
+    {
+        Console.WriteLine($"---Executing feature: {feature.Name}---");
+        feature.Run();
+    }
+    else
+    {
+        Console.WriteLine($"Invalid feature");
+    }
 
-  Console.WriteLine("\r\nPress any key to exit");
-  Console.ReadKey(true);
+    Console.WriteLine("\r\nPress any key to exit");
+    Console.ReadKey(true);
 }
 else
 {
-  // var features = Assembly.GetExecutingAssembly().GetTypes().Where(t => t.IsSubclassOf(typeof(BaseFeature))).ToList();
-  // Activator.CreateInstance(features[0]);
+    // var features = Assembly.GetExecutingAssembly().GetTypes().Where(t => t.IsSubclassOf(typeof(BaseFeature))).ToList();
+    // Activator.CreateInstance(features[0]);
 
-  Console.Clear();
+    Console.Clear();
 
-  IMenu menu = ConsoleMenuFactory.CreateMenu();
-  menu.AddMenuItem("Local functions", () =>
-  {
-    var feature = new LocalFunctions();
-    feature.Run();
-  });
-  menu.AddMenuItem("Switch patterns", () =>
-  {
-    var feature = new SwitchPatterns();
-    feature.Run();
-  });
-  menu.AddMenuItem("Ref returns", () =>
-  {
-    var feature = new RefReturns();
-    feature.Run();
-  });
-  menu.Show();
+    IMenu menu = ConsoleMenuFactory.CreateMenu();
+    menu.AddMenuItem("Local functions", () =>
+    {
+        var feature = new LocalFunctions();
+        feature.Run();
+    });
+    menu.AddMenuItem("Switch patterns", () =>
+    {
+        var feature = new SwitchPatterns();
+        feature.Run();
+    });
+    menu.AddMenuItem("Ref returns", () =>
+    {
+        var feature = new RefReturns();
+        feature.Run();
+    });
+    menu.Show();
 }
 
 BaseFeature? GetFeature(string featureType)
 {
-  BaseFeature? feature;
-  switch (featureType)
-  {
-    case "lf":
-      feature = new LocalFunctions();
-      break;
-    case "sp":
-      feature = new SwitchPatterns();
-      break;
-    case "rr":
-      feature = new RefReturns();
-      break;
-    case "tp":
-      feature = new ThreadPoolFeature();
-      break;
-    default:
-      feature = null;
-      break;
-  }
-
-  return feature;
+    BaseFeature? feature = featureType switch
+    {
+        "lf" => new LocalFunctions(),
+        "sp" => new SwitchPatterns(),
+        "rr" => new RefReturns(),
+        "tp" => new ThreadPoolFeature(),
+        _ => null,
+    };
+    return feature;
 }
 
