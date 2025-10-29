@@ -1,4 +1,5 @@
-namespace Features;
+
+namespace CSharpFeatures.Features;
 
 class LocalFunctions : BaseFeature
 {

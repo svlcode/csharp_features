@@ -1,10 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿namespace CSharpFeatures.Features;
 
-namespace MyCSharpFeatures.Features
+internal class WorkingWithSpans : BaseFeature
 {
-    internal class WorkingWithSpans
+    public override string Name => "Working with Spans";
+    public override void Run()
     {
     }
 }

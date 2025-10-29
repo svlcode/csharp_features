@@ -1,4 +1,4 @@
-namespace Features;
+namespace CSharpFeatures.Features;
 
 class SwitchPatterns : BaseFeature
 {
