@@ -1,25 +1,44 @@
-
-abstract class Shape
+﻿
+abstract record Shape
 {
     public abstract double GetArea();
 }
 
-class Triangle : Shape
+record Triangle(double Base, double Height) : Shape
 {
-    public double Base { get; set; }
-    public double Height { get; set; }
     public override double GetArea() => 0.5 * Base * Height;
 }
 
-class Rectangle : Shape
+record Rectangle : Shape
 {
-    public double Width { get; set; }
-    public double Height { get; set; }
+    public required Point Origin { get; init; }
+    public required double Width { get; init; }
+    public required double Height { get; init; }
+
+    public void Deconstruct(out Point origin, out double width, out double height)
+    {
+        origin = Origin;
+        width = Width;
+        height = Height;
+    }
+
     public override double GetArea() => Width * Height;
 }
 
-class Circle : Shape
+record Circle : Shape
 {
-    public double Radius { get; set; }
+    public required Point Origin { get; init; }
+    public required double Radius { get; init; }
+
+    public void Deconstruct(out Point origin, out double radius)
+    {
+        origin = Origin;
+        radius = Radius;
+    }
     public override double GetArea() => Math.PI * Radius * Radius;
+}
+
+record Point(double X, double Y)
+{
+    public static implicit operator Point((double X, double Y) tuple) => new Point(tuple.X, tuple.Y);
 }

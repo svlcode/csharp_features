@@ -27,9 +27,9 @@ else
     IMenu menu = ConsoleMenuFactory.CreateMenu();
     menu.AddMenuFeature<ThreadPoolFeature>();
     menu.AddMenuFeature<LocalFunctions>();
-    menu.AddMenuFeature<SwitchPatterns>();
     menu.AddMenuFeature<RefReturns>();
     menu.AddMenuFeature<WorkingWithSpans>();
+    menu.AddMenuFeature<PatternMatchingFeature>();
     menu.Show();
 }
 
@@ -38,9 +38,9 @@ BaseFeature? GetFeature(string featureType)
     BaseFeature? feature = featureType switch
     {
         "lf" => new LocalFunctions(),
-        "sp" => new SwitchPatterns(),
         "rr" => new RefReturns(),
         "tp" => new ThreadPoolFeature(),
+        "pm" => new PatternMatchingFeature(),
         _ => null,
     };
     return feature;
