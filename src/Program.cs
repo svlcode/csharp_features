@@ -30,6 +30,7 @@ else
     menu.AddMenuFeature<RefReturns>();
     menu.AddMenuFeature<WorkingWithSpans>();
     menu.AddMenuFeature<PatternMatchingFeature>();
+    menu.AddMenuFeature<IndicesAndRangesFeature>();
     menu.Show();
 }
 
